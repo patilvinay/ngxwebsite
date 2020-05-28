@@ -1,0 +1,32 @@
+// Portfolio Modals
+| {% for post in site.posts %}
+.portfolio-modal.modal.fade(id='portfolioModal{{ post.modal-id }}' tabindex='-1' role='dialog' aria-hidden='true')
+  .modal-content
+    .close-modal(data-dismiss='modal')
+      .lr
+        .rl
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .modal-body
+            h2 {{ post.title }}
+            hr.star-primary
+            img.img-responsive.img-centered(src='img/portfolio/{{ post.img }}' alt='{{ post.alt }}')
+            p {{ post.description }}
+            ul.list-inline.item-details
+              li
+                | Client:
+                strong
+                  a(href='http://startbootstrap.com') {{ post.client }}
+              li
+                | Date:
+                strong
+                  a(href='http://startbootstrap.com') {{ post.project-date }}
+              li
+                | Service:
+                strong
+                  a(href='http://startbootstrap.com') {{ post.category }}
+            button.btn.btn-default(type='button' data-dismiss='modal')
+              i.fa.fa-times
+              |  Close
+| {% endfor %}

@@ -1,0 +1,18 @@
+footer
+  .container
+    .row
+      .col-md-4
+        span.copyright Copyright &copy; {{ site.title }} {{ &apos;now&apos; | date: &quot;%Y&quot; }}
+      .col-md-4
+        ul.list-inline.social-buttons
+          | {% for network in site.social %}
+          li
+            a(href='{{ network.url }}')
+              i.fa(class='fa-{{ network.title }}')
+          |                         {% endfor %}
+      .col-md-4
+        ul.list-inline.quicklinks
+          li
+            a(href='#') Privacy Policy
+          li
+            a(href='#') Terms of Use

@@ -1,0 +1,25 @@
+// Team Section
+section#team.bg-light-gray
+  .container
+    .row
+      .col-lg-12.text-center
+        h2.section-heading Our Amazing Team
+        h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+    .row
+{% for member in site.people %}
+      .col-sm-4
+        .team-member
+          img.img-responsive.img-circle(src='img/team/{{ member.pic }}.jpg' alt='')
+          h4 {{ member.name }}
+          p.text-muted {{ member.position }}
+          ul.list-inline.social-buttons
+            | {% for network in member.social %}
+            li
+              a(href='{{ network.url }}')
+                i.fa(class='fa-{{ network.title }}')
+{% endfor %}
+{% endfor %}
+    .row
+      .col-lg-8.col-lg-offset-2.text-center
+        p.large.text-muted
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.

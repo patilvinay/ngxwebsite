@@ -1,0 +1,19 @@
+// Portfolio Grid Section
+section#portfolio.bg-light-gray
+  .container
+    .row
+      .col-lg-12.text-center
+        h2.section-heading Portfolio
+        h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+    .row
+      | {% for post in site.posts %}
+      .col-md-4.col-sm-6.portfolio-item
+        a.portfolio-link(href='#portfolioModal{{ post.modal-id }}' data-toggle='modal')
+          .portfolio-hover
+            .portfolio-hover-content
+              i.fa.fa-plus.fa-3x
+          img.img-responsive.img-centered(src='img/portfolio/{{ post.thumbnail }}' alt='')
+        .portfolio-caption
+          h4 {{ post.title }}
+          p.text-muted {{ post.subtitle }}
+      |             {% endfor %}
