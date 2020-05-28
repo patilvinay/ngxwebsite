@@ -1,0 +1,11 @@
+preplay:
+  renderer: jinja2
+kalpa:
+  #   import:
+  #     config:
+  #       file: config.yml
+  #       ref: vars
+  #       directory: ./
+
+  series:
+    - index
