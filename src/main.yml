@@ -1,0 +1,24 @@
+kalpa:
+  import:
+    config:
+      file: config.yml
+      ref: vars
+      directory: ../data
+  vars:
+    outDir: "{{ env.PWD }}/www"
+
+  play:
+    - name: "Generate header"
+      kalpa-pug:
+        dest: "{{ vars.outDir }}/header.html"
+        template: "{{ env.PWD }}/templates/client.pug"
+    - name: "Generate header"
+      kalpa-pug:
+        dest: "{{ vars.outDir }}/header.html"
+        template: "{{ env.PWD }}/templates/team.pug"
+    # - name: "Generate body"
+    #   kalpa-ejs:
+    #     vars:
+    #       dest: "{{ vars.outDir }}/index.html"
+    #       template: "{{ env.PWD }}/templates/index.html.ejs"
+    #       renderer: kalpa-ejs
