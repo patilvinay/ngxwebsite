@@ -8,14 +8,53 @@ kalpa:
     outDir: "{{ env.PWD }}/www"
 
   play:
-    - name: "Generate header"
-      kalpa-pug:
-        dest: "{{ vars.outDir }}/header.html"
-        template: "{{ env.PWD }}/templates/client.pug"
-    - name: "Generate header"
-      kalpa-pug:
-        dest: "{{ vars.outDir }}/header.html"
-        template: "{{ env.PWD }}/templates/team.pug"
+    # - name: "Generate header"
+    #   kalpa-pug:
+    #     dest: "{{ vars.outDir }}/header.html"
+    #     template: "{{ env.PWD }}/templates/client.pug"
+    # - name: "Generate header"
+    #   kalpa-pug:
+    #     dest: "{{ vars.outDir }}/header.html"
+    #     template: "{{ env.PWD }}/templates/team.pug"
+
+    - name: make dir {{item}}
+      kalpa-file:
+        action: mkdir
+        dir: "{{ item }}"
+      loop:
+        - "{{ vars.outDir }}"
+        - "{{ vars.outDir}}/js"
+        - "{{ vars.outDir}}/css"
+        - "{{ vars.outDir}}/css/font-awesome"
+        - "{{ vars.outDir}}/css/font-awesome/css"
+
+    - name: Coping js file {{item}}
+      kalpa-ejs:
+        vars:
+          template: "{{env.PWD}}/src/js/{{item}}"
+          dest: "{{vars.outDir}}/js/{{ item }}"
+      loop:
+        - agency.js
+        - bootstrap.js
+        - bootstrap.min.js
+        - cbpAnimatedHeader.js
+        - cbpAnimatedHeader.min.js
+        - classie.js
+        - jqBootstrapValidation.js
+        - jquery-1.11.0.js
+        - jquery.easing.min.js
+
+    - name: Coping css file {{item}}
+      kalpa-ejs:
+        vars:
+          template: "{{env.PWD}}/src/css/font-awesome/css/{{item}}"
+          dest: "{{vars.outDir}}/css/font-awesome/css/{{ item }}"
+      loop:
+        - font-awesome.css
+        - font-awesome.min.css
+      # debug:
+      #   - "{{env.PWD}}/src/js/{{ item }}"
+      #   - "{{vars.outDir}}/js/{{ item }}"
     # - name: "Generate body"
     #   kalpa-ejs:
     #     vars:
