@@ -8,15 +8,6 @@ kalpa:
     outDir: "{{ env.PWD }}/www"
 
   play:
-    # - name: "Generate header"
-    #   kalpa-pug:
-    #     dest: "{{ vars.outDir }}/header.html"
-    #     template: "{{ env.PWD }}/templates/client.pug"
-    # - name: "Generate header"
-    #   kalpa-pug:
-    #     dest: "{{ vars.outDir }}/header.html"
-    #     template: "{{ env.PWD }}/templates/team.pug"
-
     - name: make dir {{item}}
       kalpa-file:
         action: mkdir
@@ -28,6 +19,20 @@ kalpa:
         - "{{ vars.outDir}}/css/font-awesome"
         - "{{ vars.outDir}}/css/font-awesome/css"
 
+    - name: "Generate html file from {{item}}"
+      kalpa-pug:
+        dest: "{{ vars.outDir }}/{{item}}.html"
+        template: "{{ env.PWD }}/templates/{{item}}.pug"
+      loop:
+        - client
+        - contact
+        - footer
+        - head
+        - header
+        - modals
+        - portfolio_grid
+        - services
+        - team
     - name: Coping js file {{item}}
       kalpa-ejs:
         vars:
