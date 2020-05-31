@@ -4,13 +4,13 @@ footer
   .container
     .row
       .col-md-4
-        span.copyright Copyright &copy; #{ site.title } {{ &apos;now&apos; | date: &quot;%Y&quot; }}
+        span.copyright Copyright &copy; #{ site.title } #{ site.copyRightYear }
       .col-md-4
         ul.list-inline.social-buttons
           each network,i in site.social
             li
               a(href= network.url )
-                i.fa(class= 'fa-twitter' )
+                i.fa(class= network.title)
 
       .col-md-4
         ul.list-inline.quicklinks

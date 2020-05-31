@@ -5,17 +5,20 @@ kalpa:
       template:
         color:
           primary: fed136
-          secondary: fed136
-          secondaryDark: 123123
+          secondary: fec503
+          secondaryDark: 2f2c22
+          muted: 777
         font:
-          primary: Helvetica Neue
+          primary: 'Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif'
+          secondary: '"Droid Serif","Helvetica Neue", Helvetica,Arial,sans-serif'
     url: https://ngxtechnologies.com
+    copyRightYear: 2017
     social:
       - url: https://twitter.com/jekyllrb
-        title: twitter
+        title: fa-twitter
       - url: https://facebook.com/vinaypatil
-        title: facebook
+        title: fa-facebook
       - url: https://github.com/patilvinay
-        title: github
+        title: fa-github
       - url: https://linkedin.com
-        title: linkedin
+        title: fa-linkedin

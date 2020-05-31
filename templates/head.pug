@@ -1,5 +1,5 @@
 - var site =  imported.config 
-- var files = vars.files
+- var files = vars
 head
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
@@ -8,14 +8,21 @@ head
   meta(name='description' content='{{ site.description }}')
   link(rel='canonical' href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}")
   // Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/
-  link(rel='stylesheet' href= files.cssFile1 )
-  link(rel='stylesheet' href=  files.fontawesome )
-  link(rel='stylesheet' href= files.cssFile )
-
+  link(rel='stylesheet' href= 'css/bootstrap.css' )
+  link(rel='stylesheet' href= 'css/'+files.cssFile )
   // Custom Fonts
-  link(rel='stylesheet' href='')
-  link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css')
-  link(href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css')
-  link(href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css')
-  link(href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css')
-  link(href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css')
+link(rel='stylesheet' href= 'css/font-awesome.css')
+link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css')
+link(href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css')
+link(href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css')
+link(href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css')
+link(href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css')
+script(src="js/jquery-1.11.0.js")
+script(src="js/bootstrap.min.js")
+script(src="js/jquery.easing.min.js")
+script(src="js/classie.js")
+script(src="js/cbpAnimatedHeader.js")
+script(src="js/jqBootstrapValidation.js")
+script(src="js/contact_me.js")
+script(src="js/agency.js")
+

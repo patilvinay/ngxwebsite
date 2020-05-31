@@ -1,6 +1,6 @@
 - var site =  imported.config 
 // Navigation
-nav.navbar.navbar-default.navbar-fixed-top
+nav.navbar.navbar-default.navbar-fixed-top.navbar-shrink
   .container
     // Brand and toggle get grouped for better mobile display
     .navbar-header.page-scroll
@@ -11,7 +11,7 @@ nav.navbar.navbar-default.navbar-fixed-top
         span.icon-bar
       a.navbar-brand.page-scroll(href='#page-top') #{site.title}
     // Collect the nav links, forms, and other content for toggling
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+    .collapse.navbar-collapse.bs-example-navbar-collapse-1
       ul.nav.navbar-nav.navbar-right
         li.hidden
           a(href='#page-top')
@@ -25,9 +25,9 @@ nav.navbar.navbar-default.navbar-fixed-top
           a.page-scroll(href='#team') Team
         li
           a.page-scroll(href='#contact') Contact
-    // /.navbar-collapse
-    // /.container-fluid
-// Header
+      // /.navbar-collapse
+      // /.container-fluid
+      // Header
 header
   .container
     .intro-text

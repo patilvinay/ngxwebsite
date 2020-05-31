@@ -10,10 +10,9 @@ kalpa:
       directory: ../data
 
   vars:
-    files:
-      cssFile: "css/agency.css"
-      cssFile1: "css/bootstrap.css"
-      fontawesome: "css/font-awesome.css"
+    cssFile: "style.css"
+    #cssbootstrap: "css/bootstrap.css"
+    #fontawesome: "css/font-awesome.css"
     outDir: "{{ env.PWD }}/www"
 
   play:
@@ -42,6 +41,7 @@ kalpa:
         - portfolio_grid
         - services
         - team
+       
     - name: Coping js file {{< item >}}
       kalpa-ejs:
         vars:
@@ -57,7 +57,13 @@ kalpa:
         - jqBootstrapValidation.js
         - jquery-1.11.0.js
         - jquery.easing.min.js
+    #- debug:
 
+    - name: "Coping css file {{env.PWD}}/src/css/agency.css"
+      kalpa-ejs:
+        vars:
+          template: "{{env.PWD}}/src/css/agency.css"
+          dest: "{{vars.outDir}}/css/{{  vars.cssFile }}"
     - name: Coping css file {{< item >}}
       kalpa-ejs:
         vars:
@@ -76,41 +82,48 @@ kalpa:
           dest: "{{vars.outDir}}/{{< item >}}"
       loop:
         - index.html
-
+    ## ************************************************************************* ##
     - name: Html correction
+      kalpa-execa:
+        cmd: sed
+        opts:
+          - -i
+          - "{{< item | safe >}}"
+          - www/index.html
+      debug:
+        - Html correction {{< item | safe >}}
+      loop:
+        - 's/&#34;/\"/g'
+        - "s/&lt;/</g"
+        - "s/&gt;/>/g"
+        - "s/&#39;/'/g"
+        - "s/&amp;apos;/`/g"
+        - "s/amp;copy/copy/g"
+        - 's/&amp;quot;/\"/g'
+
+    - name: css correction
       kalpa-execa:
         cmd: sed
         opts:
           - -i
           - 's/\&#34;/\"/g'
-          - www/index.html
-    - name: Html correction
-      kalpa-execa:
-        cmd: sed
-        opts:
-          - -i
-          - "s/&lt;/</g"
-          - www/index.html
-    - name: Html correction
-      kalpa-execa:
-        cmd: sed
-        opts:
-          - -i
-          - "s/&gt;/>/g"
-          - www/index.html
-    - name: Html correction
-      kalpa-execa:
-        cmd: sed
-        opts:
-          - -i
-          - "s/&#39;/'/g"
-          - www/index.html
-    # debug:
-    #   - "{{env.PWD}}/src/js/{{ item }}"
-    #   - "{{vars.outDir}}/js/{{ item }}"
-    # - name: "Generate body"
-    #   kalpa-ejs:
-    #     vars:
-    #       dest: "{{ vars.outDir }}/index.html"
-    #       template: "{{ env.PWD }}/templates/index.html.ejs"
-    #       renderer: kalpa-ejs
+          - www/css/{{vars.cssFile}}
+      debug:
+        - CSS correction {{< item | safe >}}
+      loop:
+        - 's/&#34;/\"/g'
+        - "s/&lt;/</g"
+        - "s/&gt;/>/g"
+        - "s/&#39;/'/g"
+        - "s/&amp;apos;/`/g"
+        - "s/amp;copy/copy/g"
+## ************************************************************************* ##
+# debug:
+#   - "{{env.PWD}}/src/js/{{ item }}"
+#   - "{{vars.outDir}}/js/{{ item }}"
+# - name: "Generate body"
+#   kalpa-ejs:
+#     vars:
+#       dest: "{{ vars.outDir }}/index.html"
+#       template: "{{ env.PWD }}/templates/index.html.ejs"
+#       renderer: kalpa-ejs

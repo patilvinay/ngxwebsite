@@ -8,11 +8,11 @@ kalpa:
     # Team names, titles and social links
     people:
       - name: Vinay Patil
-        picFile: vin.jpg
+        picFile: img/team/2.jpg
         position: Director
 
       - name: Neelambika Patil
-        picFile: neel.jpg
+        picFile: img/team/1.jpg
         position: Director
 
     social:
