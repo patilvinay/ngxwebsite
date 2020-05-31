@@ -4,14 +4,23 @@ kalpa:
       file: config.yml
       ref: vars
       directory: ../data
+    site:
+      file: site.yml
+      ref: vars
+      directory: ../data
+
   vars:
+    files:
+      cssFile: "css/agency.css"
+      cssFile1: "css/bootstrap.css"
+      fontawesome: "css/font-awesome.css"
     outDir: "{{ env.PWD }}/www"
 
   play:
-    - name: make dir {{item}}
+    - name: make dir {{< item >}}
       kalpa-file:
         action: mkdir
-        dir: "{{ item }}"
+        dir: "{{< item >}}"
       loop:
         - "{{ vars.outDir }}"
         - "{{ vars.outDir}}/js"
@@ -19,10 +28,10 @@ kalpa:
         - "{{ vars.outDir}}/css/font-awesome"
         - "{{ vars.outDir}}/css/font-awesome/css"
 
-    - name: "Generate html file from {{item}}"
+    - name: "Generate html file from {{ vars.outDir }}/{{< item >}}.ejs"
       kalpa-pug:
-        dest: "{{ vars.outDir }}/{{item}}.html"
-        template: "{{ env.PWD }}/templates/{{item}}.pug"
+        dest: "{{ vars.outDir }}/{{< item >}}.html.ejs"
+        template: "{{ env.PWD }}/templates/{{< item >}}.pug"
       loop:
         - client
         - contact
@@ -33,11 +42,11 @@ kalpa:
         - portfolio_grid
         - services
         - team
-    - name: Coping js file {{item}}
+    - name: Coping js file {{< item >}}
       kalpa-ejs:
         vars:
-          template: "{{env.PWD}}/src/js/{{item}}"
-          dest: "{{vars.outDir}}/js/{{ item }}"
+          template: "{{env.PWD}}/src/js/{{< item >}}"
+          dest: "{{vars.outDir}}/js/{{< item >}}"
       loop:
         - agency.js
         - bootstrap.js
@@ -49,17 +58,56 @@ kalpa:
         - jquery-1.11.0.js
         - jquery.easing.min.js
 
-    - name: Coping css file {{item}}
+    - name: Coping css file {{< item >}}
       kalpa-ejs:
         vars:
-          template: "{{env.PWD}}/src/css/font-awesome/css/{{item}}"
-          dest: "{{vars.outDir}}/css/font-awesome/css/{{ item }}"
+          template: "{{env.PWD}}/src/css/{{< item >}}"
+          dest: "{{vars.outDir}}/css/{{< item >}}"
       loop:
         - font-awesome.css
         - font-awesome.min.css
-      # debug:
-      #   - "{{env.PWD}}/src/js/{{ item }}"
-      #   - "{{vars.outDir}}/js/{{ item }}"
+        - agency.css
+        - bootstrap.css
+
+    - name: rendering indexfile
+      kalpa-ejs:
+        vars:
+          template: "{{env.PWD}}/templates/{{< item >}}"
+          dest: "{{vars.outDir}}/{{< item >}}"
+      loop:
+        - index.html
+
+    - name: Html correction
+      kalpa-execa:
+        cmd: sed
+        opts:
+          - -i
+          - 's/\&#34;/\"/g'
+          - www/index.html
+    - name: Html correction
+      kalpa-execa:
+        cmd: sed
+        opts:
+          - -i
+          - "s/&lt;/</g"
+          - www/index.html
+    - name: Html correction
+      kalpa-execa:
+        cmd: sed
+        opts:
+          - -i
+          - "s/&gt;/>/g"
+          - www/index.html
+    - name: Html correction
+      kalpa-execa:
+        cmd: sed
+        opts:
+          - -i
+          - "s/&#39;/'/g"
+          - www/index.html
+    # debug:
+    #   - "{{env.PWD}}/src/js/{{ item }}"
+    #   - "{{vars.outDir}}/js/{{ item }}"
     # - name: "Generate body"
     #   kalpa-ejs:
     #     vars:

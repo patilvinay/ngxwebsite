@@ -1,15 +1,17 @@
+- var site =  imported.site 
+
 footer
   .container
     .row
       .col-md-4
-        span.copyright Copyright &copy; {{ site.title }} {{ &apos;now&apos; | date: &quot;%Y&quot; }}
+        span.copyright Copyright &copy; #{ site.title } {{ &apos;now&apos; | date: &quot;%Y&quot; }}
       .col-md-4
         ul.list-inline.social-buttons
-          | {% for network in site.social %}
-          li
-            a(href='{{ network.url }}')
-              i.fa(class='fa-{{ network.title }}')
-          |                         {% endfor %}
+          each network,i in site.social
+            li
+              a(href= network.url )
+                i.fa(class= 'fa-twitter' )
+
       .col-md-4
         ul.list-inline.quicklinks
           li

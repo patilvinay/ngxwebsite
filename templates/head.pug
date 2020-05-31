@@ -1,12 +1,17 @@
+- var site =  imported.config 
+- var files = vars.files
 head
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  title {{ page.title }}
+  title #{ site.title }
   meta(name='viewport' content='width=device-width')
   meta(name='description' content='{{ site.description }}')
   link(rel='canonical' href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}")
   // Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/
-  link(rel='stylesheet' href='')
+  link(rel='stylesheet' href= files.cssFile1 )
+  link(rel='stylesheet' href=  files.fontawesome )
+  link(rel='stylesheet' href= files.cssFile )
+
   // Custom Fonts
   link(rel='stylesheet' href='')
   link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css')

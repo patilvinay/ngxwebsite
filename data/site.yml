@@ -1,0 +1,21 @@
+kalpa:
+  vars:
+    title: NGX Technologies Pvt. Ltd.
+    data:
+      template:
+        color:
+          primary: fed136
+          secondary: fed136
+          secondaryDark: 123123
+        font:
+          primary: Helvetica Neue
+    url: https://ngxtechnologies.com
+    social:
+      - url: https://twitter.com/jekyllrb
+        title: twitter
+      - url: https://facebook.com/vinaypatil
+        title: facebook
+      - url: https://github.com/patilvinay
+        title: github
+      - url: https://linkedin.com
+        title: linkedin
